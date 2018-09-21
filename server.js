@@ -4,6 +4,8 @@
 // init project
 var express = require('express');
 var app = express();
+var Twit = require('twit');
+const { consumer_key, consumer_secret, access_token, access_token_secret } = require('./config');
 
 // we've started you off with Express, 
 // but feel free to use whatever libs or frameworks you'd like through `package.json`.
@@ -15,6 +17,13 @@ app.use(express.static('public'));
 app.get('/', function(request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
+
+var T = new Twit({
+  consumer_key,
+  consumer_secret,
+  access_token,
+  access_token_secret
+})
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function() {
